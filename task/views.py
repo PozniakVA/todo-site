@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -24,3 +25,11 @@ class TaskUpdateView(generic.UpdateView):
 class TaskDeleteView(generic.DeleteView):
     model = Task
     success_url = reverse_lazy("task:task-list")
+
+
+class TaskDoneView(generic.View):
+    def get(self, request, pk):
+        task = Task.objects.get(pk=pk)
+        task.done = not task.done
+        task.save()
+        return HttpResponseRedirect(reverse_lazy("task:task-list"))
