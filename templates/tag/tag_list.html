@@ -7,14 +7,19 @@
       Create
     </a>
   </h1>
-  <table class="table">
+  <table class="table text-center">
     <tr>
       <th>Name</th>
+      <th>Update</th>
+      <th>Delete</th>
     </tr>
-    <tr>
-      {% for tag in tag_list %}
+    <br>
+    {% for tag in tag_list %}
+      <tr>
         <td>{{ tag.name }}</td>
-      {% endfor %}
-    </tr>
+        <td><a href="{% url 'tag:tag-update' pk=tag.id %}" class="btn btn-warning">Update</a></td>
+        <td><a href="{% url 'tag:tag-delete' pk=tag.id %}" class="btn btn-danger">Delete</a></td>
+      </tr>
+    {% endfor %}
   </table>
 {% endblock %}
