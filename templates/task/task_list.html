@@ -10,9 +10,9 @@
     <b>
       {{ task.content }} 
       {% if task.done %} 
-        <i class="text-success">{{ task.done }}</i> 
+        <i class="text-success">Done</i> 
         {% else %} 
-        <i class="text-danger">{{ task.done }}</i> 
+        <i class="text-danger">Not done</i> 
       {% endif %}
     </b>
     <p>
@@ -21,11 +21,13 @@
         <i class="text-danger">Deadline {{ task.deadline }}</i>
       {% endif %}
     </p>
-    <p>
+    <p class="text-muted">
       Tags:
       {% for tag in task.tags.all %}
         {{ tag }},
       {% endfor %}
+      <a href="{% url 'task:task-list' %}" class="btn btn-warning">Update</a>
+      <a href="{% url 'task:task-delete' pk=task.id%}" class="btn btn-danger">Delete</a>
     </p>
     <hr> 
   {% endfor %}
