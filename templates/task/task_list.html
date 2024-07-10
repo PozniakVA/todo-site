@@ -1,6 +1,10 @@
-{% for task in task_list %}
-  <p>{{ task.content }}</p>
-  <p>{{ task.datetime }} {% if task.deadline %}{{ task.deadline }}{% endif %}</p>
-  <p>{{ task.tags }}</p>
-  <hr> 
-{% endfor %}
+{% extends "base.html" %}
+
+{% block content %}
+  {% for task in task_list %}
+    <p>{{ task.content }}</p>
+    <p>{{ task.datetime }} {% if task.deadline %}{{ task.deadline }}{% endif %}</p>
+    <p>{{ task.tags }}</p>
+    <hr> 
+  {% endfor %}
+{%  endblock %}
