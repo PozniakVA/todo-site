@@ -2,9 +2,25 @@
 
 {% block content %}
   {% for task in task_list %}
-    <p>{{ task.content }}</p>
-    <p>{{ task.datetime }} {% if task.deadline %}{{ task.deadline }}{% endif %}</p>
-    <p>{{ task.tags }}</p>
+    <b>
+      {{ task.content }} 
+      {% if task.done %} 
+        <i class="text-success">{{ task.done }}</i> 
+        {% else %} 
+        <i class="text-danger">{{ task.done }}</i> 
+      {% endif %}
+    </b>
+    <p>
+      {{ task.datetime }} 
+      {% if task.deadline %} 
+        <i class="text-danger">Deadline {{ task.deadline }}</i>
+      {% endif %}
+    </p>
+    <p>
+      {% for tag in task.tags.all %}
+        {{ tag }}
+      {% endfor %}
+    </p>
     <hr> 
   {% endfor %}
 {%  endblock %}
