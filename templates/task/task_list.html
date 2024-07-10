@@ -1,0 +1,6 @@
+{% for task in task_list %}
+  <p>{{ task.content }}</p>
+  <p>{{ task.datetime }} {% if task.deadline %}{{ task.deadline }}{% endif %}</p>
+  <p>{{ task.tags }}</p>
+  <hr> 
+{% endfor %}
