@@ -16,6 +16,6 @@ class Task(models.Model):
     class Meta:
         ordering = ("-datetime",)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.content
 
