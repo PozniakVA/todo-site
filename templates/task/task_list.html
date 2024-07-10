@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <h1>
+    Task list
+    <a href="{% url 'task:task-create' %}" class="btn btn-primary link-to-page">Create</a>
+  </h1>
+  <br>
   {% for task in task_list %}
     <b>
       {{ task.content }} 
@@ -17,8 +22,9 @@
       {% endif %}
     </p>
     <p>
+      Tags:
       {% for tag in task.tags.all %}
-        {{ tag }}
+        {{ tag }},
       {% endfor %}
     </p>
     <hr> 
