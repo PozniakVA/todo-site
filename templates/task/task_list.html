@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Task list
+    <a href="{% url 'task:task-create' %}" class="btn btn-primary link-to-page">Create</a>
+  </h1>
+  <br>
+  {% for task in task_list %}
+    <b>
+      {{ task.content }}
+      {% if task.done %}
+        <i class="text-success">Done</i>
+          <a href="{% url 'task:task-done' pk=task.pk %}" class="btn btn-secondary link-to-page">Undo</a>
+        {% else %}
+        <i class="text-danger">Not done</i>
+         <a href="{% url 'task:task-done' pk=task.pk %}" class="btn btn-success link-to-page">Done</a>
+      {% endif %}
+    </b>
+    <p>
+      {{ task.datetime }}
+      {% if task.deadline %}
+        <i class="text-danger">Deadline {{ task.deadline }}</i>
+      {% endif %}
+    </p>
+    <p class="text-muted">
+      Tags:
+      {% for tag in task.tags.all %}
+        {{ tag }},
+      {% endfor %}
+      <a href="{% url 'task:task-update' pk=task.id %}" class="btn btn-warning">Update</a>
+      <a href="{% url 'task:task-delete' pk=task.id%}" class="btn btn-danger">Delete</a>
+    </p>
+    <hr>
+  {% endfor %}
+{%  endblock %}
