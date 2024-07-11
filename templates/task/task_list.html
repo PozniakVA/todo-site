@@ -28,7 +28,7 @@
       {% for tag in task.tags.all %}
         {{ tag }},
       {% endfor %}
-      <a href="{% url 'task:task-list' %}" class="btn btn-warning">Update</a>
+      <a href="{% url 'task:task-update' pk=task.id %}" class="btn btn-warning">Update</a>
       <a href="{% url 'task:task-delete' pk=task.id%}" class="btn btn-danger">Delete</a>
     </p>
     <hr>
